@@ -13,8 +13,9 @@ jobs:
       run:
         shell: bash -l {0}
     steps:
+    - name: checkout action
     - uses: actions/checkout@v2
-    name: create environment with mamba
+    - name: create environment with mamba
     - uses: conda-incubator/setup-miniconda@v2
       with:
         mamba-version: "*"
