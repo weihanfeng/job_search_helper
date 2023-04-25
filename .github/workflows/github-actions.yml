@@ -22,19 +22,15 @@ jobs:
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
-        activate-environment: anaconda-client-env
         use-mamba: true
     - name: Install dependencies
       run: |
-        echo: "Setting up environment"
         conda env create -f environment.yml
         conda activate project-environment
     - name: lint
       run: |
-        echo "Running lint"
         pylint src/
     - name: Run tests
       run: |
-        echo "Running tests"
         pytest src/tests/
 
