@@ -25,13 +25,15 @@ jobs:
         use-mamba: true
     - name: Install dependencies
       run: |
-        conda init
+        conda init bash
         conda env create -f environment.yml
         conda activate project-environment
     - name: lint
       run: |
+        conda activate project-environment
         pylint src/
     - name: Run tests
       run: |
+        conda activate project-environment
         pytest src/tests/
 
