@@ -11,3 +11,4 @@ dependencies:
     - pytest-cov==2.10.1
     - huggingface-hub==0.13.4
     - langchain==0.0.146
+    - sentence-transformers==2.2.2
