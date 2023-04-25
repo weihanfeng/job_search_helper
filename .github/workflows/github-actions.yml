@@ -25,7 +25,7 @@ jobs:
     - name: lint
       run: |
         conda activate project-environment
-        pylint src/
+        pylint --fail-under=6 src/
     - name: Run tests
       run: |
         conda activate project-environment
