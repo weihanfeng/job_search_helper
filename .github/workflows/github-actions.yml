@@ -25,6 +25,7 @@ jobs:
         use-mamba: true
     - name: Install dependencies
       run: |
+        conda init
         conda env create -f environment.yml
         conda activate project-environment
     - name: lint
