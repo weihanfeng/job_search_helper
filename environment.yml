@@ -1,0 +1,13 @@
+name: project-environment
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9.15
+  - pip=20.2.2
+  - ipykernel=6.4.1
+  - pip:
+    - pylint==2.9.6
+    - pytest-cov==2.10.1
+    - huggingface-hub==0.13.4
+    - langchain==0.0.146
