@@ -25,10 +25,8 @@ jobs:
         auto-activate-base: false
     - name: lint
       run: |
-        conda activate project-environment
         pylint --fail-under=6 src/
     - name: Run tests
       run: |
-        conda activate project-environment
         pytest src/tests/
 
