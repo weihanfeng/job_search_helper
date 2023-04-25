@@ -13,3 +13,4 @@ dependencies:
     - langchain==0.0.146
     - sentence-transformers==2.2.2
     - faiss-cpu==1.7.3
+    # - pre-commit==3.2.2
