@@ -1,12 +1,18 @@
 import pytest
 from .. import helper
 
+
 @pytest.fixture
 def test_get_top_similar_data():
     test_query = "I am a test query"
-    test_strings = ["I am a test string", "I am a test string 2", "I am a test string 3"]
+    test_strings = [
+        "I am a test string",
+        "I am a test string 2",
+        "I am a test string 3",
+    ]
 
     return test_query, test_strings
+
 
 def test_get_top_similar(test_get_top_similar_data):
     test_query, test_strings = test_get_top_similar_data
