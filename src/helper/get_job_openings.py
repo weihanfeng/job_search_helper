@@ -1,5 +1,4 @@
 import re
-from joblib import Parallel, delayed
 import numpy as np
 from urllib.parse import urljoin
 from selenium import webdriver
@@ -22,10 +21,11 @@ class GetJobOpenings:
         pass
 
 class MCFScraper:
-    def __init__(self, job_title, main_url, base_post_url):
+    def __init__(self, job_title, main_url, base_post_url, conditions=None):
         self.job_title = job_title
         self.main_url = main_url
         self.base_post_url = base_post_url
+        self.conditions = conditions
 
     def extract_html_text(self, soup, element, attribute):
         result = soup.find(element, attribute)
@@ -49,11 +49,28 @@ class MCFScraper:
             date = np.nan
 
         return date
+    
+    def add_filter_conditions(self):
+        condition_map = {
+            "entry level": "&positionLevel=Fresh%2Fentry%20level",
+            "non-executive": "&positionLevel=Non-executive",
+            "junior executive": "&positionLevel=Junior%20Executive",
+            "executive": "&positionLevel=Executive",
+            "senior executive": "&positionLevel=Senior%20Executive",
+            "middle management": "&positionLevel=Middle%20Management",
+            "senior management": "&positionLevel=Senior%20Management",
+        }
+        for condition in self.conditions:
+            self.main_url += condition_map[condition]
+
 
     def get_job_urls(self, page):
         driver = self.configure_driver()
         formatted_job_title = re.sub(" ", "%20", self.job_title)
-        driver.get(self.main_url.format(formatted_job_title, page))
+        self.main_url = self.main_url.format(formatted_job_title, page)
+        if self.conditions:
+            self.add_filter_conditions()
+        driver.get(self.main_url)
 
         # Get the HTML content of the page
         html_content = driver.page_source
@@ -94,6 +111,7 @@ class MCFScraper:
         num_applications = re.search(r'\d+', num_applications)
         result['num_applications'] = int(num_applications.group(0)) if num_applications else np.nan
         result['description'] = self.extract_html_text(soup, None, {"id": "description-content"})
+        result['url'] = url
 
         driver.quit()
 
