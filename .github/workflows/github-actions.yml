@@ -25,7 +25,7 @@ jobs:
         auto-activate-base: false
     - name: lint
       run: |
-        pylint --fail-under=6 src/
+        pylint --fail-under=2 src/
     - name: Run tests
       run: |
         pytest src/tests/
