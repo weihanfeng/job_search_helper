@@ -14,3 +14,8 @@ dependencies:
     - sentence-transformers==2.2.2
     - faiss-cpu==1.7.3
     # - pre-commit==3.2.2
+    - tqdm==4.65.0
+    - selenium==4.9.0
+    - pandas==1.5.3
+    - Flask==2.3.2
+    - beautifulsoup4==4.12.2
