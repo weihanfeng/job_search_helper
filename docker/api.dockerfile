@@ -62,6 +62,8 @@ COPY src/ ./src
 
 EXPOSE $PORT
 
+WORKDIR /src
+
 CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT src.app:app
 # EXPOSE 5000
 
