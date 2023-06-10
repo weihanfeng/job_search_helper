@@ -64,7 +64,4 @@ EXPOSE $PORT
 
 WORKDIR $HOME_DIR/src
 
-CMD gunicorn --workers=1 --bind 0.0.0.0:$PORT app:app
-# EXPOSE 5000
-
-# CMD ["python3", "src/app.py"]
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
