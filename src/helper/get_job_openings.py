@@ -37,9 +37,14 @@ class MCFScraper:
         return result
 
     def configure_driver(self):
-        options = webdriver.EdgeOptions()
+        options = webdriver.ChromeOptions()
         options.add_argument("headless")
-        driver = webdriver.Edge("../msedgedriver.exe", options=options)
+        # options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        # options.add_experimental_option('useAutomationExtension', False)
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--disable-dev-shm-usage')   
+        driver = webdriver.Chrome(options=options)
         return driver
 
     def convert_date(self, date):
