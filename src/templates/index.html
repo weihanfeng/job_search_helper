@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Search App</title>
+</head>
+<body>
+    <h1>Job Search App</h1>
+    <form method="POST" action="/">
+        <label for="job_title">Job Title:</label>
+        <input type="text" name="job_title" required><br><br>
+        <label for="num_pages">Number of Pages:</label>
+        <input type="number" name="num_pages" required><br><br>
+        <label for="top_k">Top K Rows:</label>
+        <input type="number" name="top_k" required><br><br>
+        <label for="job_levels">Job Levels:</label><br>
+        <input type="checkbox" name="job_levels[]" value="entry level">Entry Level<br>
+        <input type="checkbox" name="job_levels[]" value="non-executive">Non-Executive<br>
+        <input type="checkbox" name="job_levels[]" value="junior executive">Junior Executive<br>
+        <input type="checkbox" name="job_levels[]" value="executive">Executive<br><br>
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>
