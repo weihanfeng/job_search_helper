@@ -62,7 +62,7 @@ COPY src/ ./src
 
 EXPOSE $PORT
 
-CMD gunicorn --worker=4 --bind 0.0.0.0:$PORT src.app:app
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT src.app:app
 # EXPOSE 5000
 
 # CMD ["python3", "src/app.py"]
