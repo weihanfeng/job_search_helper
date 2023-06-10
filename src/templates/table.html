@@ -3,8 +3,9 @@
 <head>
     <title>Job Search Results</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
+<body style="overflow-x:auto;">
     <h2>Job Search Results</h2>
     <table>
         <thead>
@@ -41,7 +42,7 @@
                         {{ row.description }}
                     </div>
                 </td>
-                <td>{{ row.url|safe }}</td>  <!-- Render the "URL" column as raw HTML -->
+                <td>{{ row.url|safe }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -53,4 +54,77 @@
         }
     </script>    
 </body>
+<!-- <body>
+    <h2>Job Search Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Attributes</th>
+                <th>Results</th>
+            </tr>
+        </thead>
+        {% for row in data.itertuples() %}
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td>{{ row.title }}</td>
+            </tr>
+            <tr>
+                <td>Company</td>
+                <td>{{ row.company }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ row.address }}</td>
+            </tr>
+            <tr>
+                <td>Experience</td>
+                <td>{{ row.experience }}</td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>{{ row.category }}</td>
+            </tr>
+            <tr>
+                <td>Salary (Min)</td>
+                <td>{{ row.salary_min }}</td>
+            </tr>
+            <tr>
+                <td>Salary (Max)</td>
+                <td>{{ row.salary_max }}</td>
+            </tr>
+            <tr>
+                <td>Posted</td>
+                <td>{{ row.posted }}</td>
+            </tr>
+            <tr>
+                <td>Closing</td>
+                <td>{{ row.closing }}</td>
+            </tr>
+            <tr>
+                <td>Number of Applications</td>
+                <td>{{ row.num_applications }}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>
+                    <div class="truncate" onclick="expandDescription(this)">
+                        {{ row.description }}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>URL</td>
+                <td>{{ row.url|safe }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    
+    <script>
+        function expandDescription(element) {
+            element.classList.toggle("expanded");
+        }
+    </script>    
+</body>    -->
 </html>

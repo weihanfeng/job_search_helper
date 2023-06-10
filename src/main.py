@@ -1,11 +1,10 @@
 from helper.get_job_openings import MCFScraper
 from helper.get_top_similar import GetTopSimilar
 from joblib import Parallel, delayed
-from sample_resume import sample_resume
 import pandas as pd
 
 
-def main(job_title, max_page, conditions= None, top_k=1):
+def main(resume, job_title, max_page, conditions= None, top_k=1):
     # Get job opening details
     
     mcf_scraper = MCFScraper(
@@ -31,7 +30,7 @@ def main(job_title, max_page, conditions= None, top_k=1):
 
     # Get top similar
     get_top_similar = GetTopSimilar(strings=job_descriptions)
-    results = get_top_similar.get_top_similar(query=sample_resume, k=top_k)
+    results = get_top_similar.get_top_similar(query=resume, k=top_k)
     results_docs = [result[0].page_content for result in results]
 
     # Get dataframe of rows with "description" in result_docs
@@ -41,9 +40,13 @@ def main(job_title, max_page, conditions= None, top_k=1):
 
 
 if __name__ == "__main__":
-    job_title = "geospatial data"
+    job_title = "data analyst"
     max_page = 5
-    conditions = ["entry level", "non-executive", "junior executive", "executive", "senior executive", "middle management", "senior management"]
-    result_df = main(job_title, max_page, conditions=conditions, top_k=5)
+    top_k = 10
+    resume = "I am a data analyst with 3 years of experience in data analysis."
+    conditions = ["entry level", "non-executive", "junior executive", "executive",]
+    result_df = main(resume, job_title, max_page, conditions=conditions, top_k=top_k)
     print(result_df)
     result_df.to_csv("top_jobs.csv", index=False)
+    result_df = pd.read_csv("top_jobs.csv")
+    print(result_df)
