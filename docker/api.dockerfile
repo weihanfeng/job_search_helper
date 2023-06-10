@@ -60,6 +60,9 @@ RUN pip3 install --no-cache-dir -r $REQUIREMENTS_TXT
 
 COPY src/ ./src
 
-EXPOSE 5000
+EXPOSE $PORT
 
-CMD ["python3", "src/app.py"]
+CMD gunicorn --worker=4 --bind 0.0.0.0:$PORT src.app:app
+# EXPOSE 5000
+
+# CMD ["python3", "src/app.py"]
