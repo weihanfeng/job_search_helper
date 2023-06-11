@@ -62,6 +62,8 @@ class MCFScraper:
             "junior executive": "&positionLevel=Junior%20Executive",
             "executive": "&positionLevel=Executive",
             "senior executive": "&positionLevel=Senior%20Executive",
+            "professional": "&positionLevel=Professional",
+            "manager": "&positionLevel=Manager",
             "middle management": "&positionLevel=Middle%20Management",
             "senior management": "&positionLevel=Senior%20Management",
         }
