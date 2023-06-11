@@ -1,14 +1,17 @@
 from flask import Flask, render_template, request
 import pandas as pd
 from main import main
+import time
 
 app = Flask(__name__)
 
 def get_top_rows(resume, job_title, num_pages, conditions, top_k):
     df = main(resume, job_title, num_pages, conditions=conditions, top_k=top_k)
     # df = pd.read_csv("top_jobs.csv")
+    # # wait 1 seconds
+    # time.sleep(500)
     df = df.head(top_k)  # Filter top k rows
-    df['url'] = df['url'].apply(lambda x: f'<a href="{x}">{x}</a>')
+    df[['num_applications', 'salary_max', 'salary_min']] = df[['num_applications', 'salary_max', 'salary_min']].astype(int)
     return df
 
 @app.route('/', methods=['GET', 'POST'])
