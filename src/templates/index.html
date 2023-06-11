@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Job Search App</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 </head>
-<body class="flex">
-    <div>
-        <h1>Job Search App</h1>
-        <form method="POST" action="/">
-            <label for="resume"><b>Resume:</b></label>
-            <input type="text" name="resume" required><br><br>
+
+<body>
+
+    <div id="loading-screen">
+        <div>
+            <div class="spinner"></div>
+            <p>Fetching results...</p>
+        </div>
+    </div>
+    <h1>Job Search Helper</h1>
+    <form method="POST" action="/" class="flex">
+        <div>
+            <label for="resume"><b>Your Resume:</b></label>
+            <textarea name="resume" rows="4" cols="50" required></textarea>
+        </div>
+        <div>
             <label for="job_title"><b>Job Title:</b></label>
             <input type="text" name="job_title" required><br><br>
-            <label for="num_pages"><b>Number of Pages:</b></label>
+            <label for="num_pages"><b>Number of Pages to Search:</b></label>
             <input type="number" name="num_pages" required><br><br>
-            <label for="top_k"><b>Top K Rows:</b></label>
+            <label for="top_k"><b>Number of Top Results:</b></label>
             <input type="number" name="top_k" required><br><br>
             <label for="job_levels"><b>Job Levels:</b></label><br><br>
-            <input type="checkbox" name="job_levels[]" value="entry level">Entry Level<br><br>
-            <input type="checkbox" name="job_levels[]" value="non-executive">Non-Executive<br><br>
-            <input type="checkbox" name="job_levels[]" value="junior executive">Junior Executive<br><br>
-            <input type="checkbox" name="job_levels[]" value="executive">Executive<br><br>
-            <input type="submit" value="Search">
-        </form>
-    </div>
+            <div class="flex">
+                <div>
+                    <input type="checkbox" name="job_levels[]" value="entry level">Entry Level<br><br>
+                    <input type="checkbox" name="job_levels[]" value="non-executive">Non-Executive<br><br>
+                    <input type="checkbox" name="job_levels[]" value="junior executive">Junior Executive<br><br>
+                    <input type="checkbox" name="job_levels[]" value="executive">Executive<br><br>
+                    <input type="checkbox" name="job_levels[]" value="senior executive">Senior Executive<br><br>
+                </div>
+                <div>
+                    <input type="checkbox" name="job_levels[]" value="professional">Professional<br><br>
+                    <input type="checkbox" name="job_levels[]" value="manager">Manager<br><br>
+                    <input type="checkbox" name="job_levels[]" value="middle management">Middle Management<br><br>
+                    <input type="checkbox" name="job_levels[]" value="senior management">Senior Management<br><br>        
+                </div>
+            </div>
+            <button onclick="showLoader()">Search</button>
+        </div>
+    </form>
+
+        <script>
+            function showLoader() {
+                document.getElementById("loading-screen").classList.add("show");
+            }
+        </script>
+
 </body>
+
 </html>
