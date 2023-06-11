@@ -5,7 +5,7 @@ on:
     workflows: ["Test Conda Environment"]
     branches: [ main ]
     types:
-      - in_progress
+      - completed
   
 jobs:
   build-and-deploy:
